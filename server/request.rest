@@ -1,12 +1,31 @@
 GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJhbGV4IiwiZW1haWwiOiJhbGV4QG1haWwuY29tIiwiaWF0IjoxNzE2NDg2OTQzLCJleHAiOjE3MTY0ODY5NTh9.cX3oaifJzQOtg6yCFgG3u7dJ5TTdO9fH_zil2Gt2DXo
 
 ###
 POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "name" : "mayadev 2",
-    "email": "maya2@mail.com",
-    "password": "akumaya",
-    "confPassword": "akumaya2"
+    "name" : "alex",
+    "email": "alex@mail.com",
+    "password": "12345",
+    "confPassword": "12345"
 }
+
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "alex@mail.com",
+    "password": "12345"
+
+}
+
+###
+GET http://localhost:5000/token
+
+
+###
+DELETE http://localhost:5000/logout
