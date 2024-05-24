@@ -15,13 +15,13 @@ return (
                         <h2 className="form-title">Login</h2>
                         <form method="POST" className="register-form" id="login-form">
                             <div className="form-group">
-                                <label for="your_name"><i className="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                                <label htmlFor="your_name"><i className="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" placeholder="Your Name"/>
                             </div>
 
                             <div className="form-group">
-                                <label for="your_pass"><i className="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                                <label htmlFor="your_pass"><i className="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="password" placeholder="Password"/>
                             </div>
                             
                             <div className="form-group form-button">
