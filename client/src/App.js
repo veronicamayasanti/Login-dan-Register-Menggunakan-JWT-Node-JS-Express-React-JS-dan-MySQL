@@ -7,24 +7,22 @@ import Dashboard from "./components/Dashboard";
 function App() {
   return (
     <BrowserRouter>
-    <div className="main">
-      <Routes>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/users" element={<Register />} />
-
-          {/* <Route path="/dashboard" element={<Navbar />}/>
-          <Route path="/dashboard" element={<Dashboard />}> */}
-
-          {/* </Route> */}
-        
-        
-      </Routes>
+      <div className="main">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/dashboard"
+            element={
+              <div className="container">
+                <Navbar />
+                <Dashboard />
+              </div>
+            }
+          />
+        </Routes>
       </div>
     </BrowserRouter>
-
-  
-      
-    
   );
 }
 
