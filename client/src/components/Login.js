@@ -7,7 +7,7 @@ return (
                 <div className="signin-content">
 
                     <div className="signin-image">
-                        <figure><img src="images/signin-image.jpg" alt="sing up image" /></figure>
+                        <figure><img src="images/signin-image.jpg" alt="sign up image" /></figure>
                         <a href="/" className="signup-image-link">Create an account</a>
                     </div>
 
