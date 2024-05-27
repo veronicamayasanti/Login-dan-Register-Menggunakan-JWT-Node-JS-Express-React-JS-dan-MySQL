@@ -18,11 +18,12 @@ try {
     console.error(error);
 };
 
-
+// { credentials: true, origin: 'http://localhost:3000' }
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
 app.use(cookieParser());
 app.use(express.json());
 app.use(router);
-app.listen(3300, () => {
-    console.log('server running at port 3300');
+
+app.listen(8080, () => {
+    console.log('server running at port 8080');
 });

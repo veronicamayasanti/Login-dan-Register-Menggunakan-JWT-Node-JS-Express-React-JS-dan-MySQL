@@ -1,20 +1,20 @@
-GET http://localhost:5000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJhbGV4IiwiZW1haWwiOiJhbGV4QG1haWwuY29tIiwiaWF0IjoxNzE2NDg2OTQzLCJleHAiOjE3MTY0ODY5NTh9.cX3oaifJzQOtg6yCFgG3u7dJ5TTdO9fH_zil2Gt2DXo
+GET http://localhost:3300/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJhbGV4IiwiZW1haWwiOiJhbGV4QG1haWwuY29tIiwiaWF0IjoxNzE2Njg4MTY0LCJleHAiOjE3MTY2ODgxNzl9.KRWr4CPccChz8Y7P7FSHb4zrxClFnH9cD7d4soo3U9g
 
 ###
-POST http://localhost:5000/users
+POST http://localhost:3300/users
 Content-Type: application/json
 
 {
-    "name" : "alex",
-    "email": "alex@mail.com",
-    "password": "12345",
-    "confPassword": "12345"
+    "name" : "jhon",
+    "email": "jhone@mail.com",
+    "password": "akujhon",
+    "confPassword": "akujhon"
 }
 
 
 ###
-POST http://localhost:5000/login
+POST http://localhost:3300/login
 Content-Type: application/json
 
 {
@@ -24,8 +24,8 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/token
+GET http://localhost:3300/token
 
 
 ###
-DELETE http://localhost:5000/logout
+DELETE http://localhost:3300/logout

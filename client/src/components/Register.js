@@ -3,40 +3,29 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Register() {
-    const [form, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    })
+const Register = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confPassword, setconfPassword] = useState('');
+    const [msg, setMsg] = useState('');
+    
+    const navigate = useNavigate()
 
-    const navigate = useNavigate();
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
-
-
-    const handleClick = async (e) => {
-        e.preventDefault()
-
-        const formData = new FormData();
-        Object.keys(form).forEach(key => {
-            formData.append(key, form[key])
-        })
-
-
+    const Register = async (e) => {
+        e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3300/users", formData,)
-            console.log('Server response:', response.data);
+            await axios.post('http://localhost:8080/users', {
+                name: name,
+                email: email,
+                password: password,
+                confPassword: confPassword
+            })
             navigate('/login')
         } catch (error) {
-            console.error('axios error:', error);
+            if(error.response){
+                setMsg(error.response.data.msg)
+            }
         }
     }
 
@@ -47,8 +36,8 @@ function Register() {
                 <div className="signup-content">
                     <div className="signup-form">
                         <h2 className="form-title">Sign up</h2>
-                        <form method="POST" className="register-form" id="register-form">
-
+                        <form onSubmit={Register} className="register-form" id="register-form">
+                            <p>{msg}</p>
                             <div className="form-group">
                                 <label htmlFor="name"><i className="zmdi zmdi-account material-icons-name"></i></label>
                                 <input
@@ -57,8 +46,8 @@ function Register() {
                                     name="name"
                                     id="name"
                                     placeholder="Your Name"
-                                    value={form.name}
-                                    onChange={handleChange}
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
                                 />
                             </div>
 
@@ -70,8 +59,8 @@ function Register() {
                                     name="email"
                                     id="email"
                                     placeholder="Your Email"
-                                    value={form.email}
-                                    onChange={handleChange}
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
 
@@ -83,8 +72,8 @@ function Register() {
                                     name="password"
                                     id="password"
                                     placeholder="Password"
-                                    value={form.password}
-                                    onChange={handleChange}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
 
@@ -93,17 +82,17 @@ function Register() {
                                 <input
                                     type="password"
                                     className='form-control'
-                                    name="confirmPassword"
-                                    id="confirmPassword"
+                                    name="confPassword"
+                                    id="confPassword"
                                     placeholder="Repeat your password"
-                                    value={form.confirmPassword}
-                                    onChange={handleChange}
+                                    value={confPassword}
+                                    onChange={(e) => setconfPassword(e.target.value)}
                                 />
                             </div>
 
 
                             <div className="form-group form-button">
-                                <input type="submit" name="signup" id="signup" className="form-submit" onClick={handleClick} />
+                                <button name="signup" id="signup" className="form-submit">Register</button>
                             </div>
                         </form>
                     </div>
