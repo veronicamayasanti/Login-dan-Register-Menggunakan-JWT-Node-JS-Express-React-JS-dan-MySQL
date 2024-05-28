@@ -1,30 +1,30 @@
-GET http://localhost:3300/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJhbGV4IiwiZW1haWwiOiJhbGV4QG1haWwuY29tIiwiaWF0IjoxNzE2Njg4MTY0LCJleHAiOjE3MTY2ODgxNzl9.KRWr4CPccChz8Y7P7FSHb4zrxClFnH9cD7d4soo3U9g
+GET http://localhost:8080/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJqaG9uIiwiZW1haWwiOiJqaG9uZUBtYWlsLmNvbSIsImlhdCI6MTcxNjg1OTg2MCwiZXhwIjoxNzE2ODU5ODc1fQ.0pYAiUB8dWShsYqn-OKZ7TGuBZW84ooNdE8gYyO7FdQ
 
 ###
-POST http://localhost:3300/users
+POST http://localhost:8080/users
 Content-Type: application/json
 
 {
     "name" : "jhon",
     "email": "jhone@mail.com",
-    "password": "akujhon",
-    "confPassword": "akujhon"
+    "password": "123",
+    "confPassword": "123"
 }
 
 
 ###
-POST http://localhost:3300/login
+POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-    "email": "alex@mail.com",
-    "password": "12345"
+    "email": "jhone@mail.com",
+    "password": "123"
 
 }
 
 ###
-GET http://localhost:3300/token
+GET http://localhost:8080/token
 
 
 ###

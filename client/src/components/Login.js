@@ -17,6 +17,7 @@ function Login() {
                 email: email,
                 password: password
             })
+            console.log(email)
             navigate('/dashboard');
         } catch (error) {
             if (error.response){
