@@ -1,6 +1,20 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
+    const navigate = useNavigate();
+
+const Logout = async () => {
+    try {
+        await axios.delete('http://localhost:8080/logout');
+        navigate('/login')
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
   return (
       <div className="navbar navbar-inverse">
           <div className="container-fluid">
@@ -20,7 +34,9 @@ function Navbar() {
                               <li><a href="/contact">Contact Us</a></li>
                               <li><a href="/profile"><span className="glyphicon glyphicon-user"></span> Profile</a></li>
                               <li><a href="/login">Login</a></li>
-                              <li><a href="/users">Sign Up</a></li>
+                              <li><a href="/register">Sign Up</a></li>
+                              <li><a  onClick={Logout}>Logout</a></li>
+                              
                               
                           </ul>
                       </div>

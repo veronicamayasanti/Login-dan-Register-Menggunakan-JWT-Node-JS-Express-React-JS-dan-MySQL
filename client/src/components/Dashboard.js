@@ -73,6 +73,9 @@ axiosJWT.interceptors.request.use(async (config) => {
 });
 
 
+ 
+
+
 const getUsers = async () => {
  try {
    const response = await axiosJWT.get('http://localhost:8080/users', {
@@ -81,6 +84,7 @@ const getUsers = async () => {
      }
    });
    setUsers(response.data);
+  console.log(response.data);
  } catch (error) {
   console.error('error fetching users: ', error);
  }
@@ -91,11 +95,26 @@ const getUsers = async () => {
   return (
     <div>
         <h1 className='title'>welcome Back: {name}</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
+      <button onClick={getUsers}>Get users</button>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+         { users.map((user, index) => (
+           <tr key={user.id}>
+             <td>{index + 1}</td>
+             <td>{user.name}</td>
+             <td>{user.email}</td>
+           </tr>
+         ))}
+          
+        </tbody>
+      </table>
     </div>
   )
 }
