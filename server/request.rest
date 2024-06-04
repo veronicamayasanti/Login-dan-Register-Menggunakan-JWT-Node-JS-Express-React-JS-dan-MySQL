@@ -1,15 +1,15 @@
 GET http://localhost:8080/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJqaG9uIiwiZW1haWwiOiJqaG9uZUBtYWlsLmNvbSIsImlhdCI6MTcxNjg1OTg2MCwiZXhwIjoxNzE2ODU5ODc1fQ.0pYAiUB8dWShsYqn-OKZ7TGuBZW84ooNdE8gYyO7FdQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJqaG9uIiwiZW1haWwiOiJqaG9uZUBtYWlsLmNvbSIsImlhdCI6MTcxNzQ5NzA4MywiZXhwIjoxNzE3NDk3MDk4fQ.32FRC1TOCK9MI5Mnnqbb3PpFLvm1wy19USFXh59NWcY
 
 ###
 POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-    "name" : "jhon",
-    "email": "jhone@mail.com",
-    "password": "123",
-    "confPassword": "123"
+    "name" : "nana",
+    "email": "angle@mail.com",
+    "password": "abcs",
+    "confPassword": "abcs"
 }
 
 
