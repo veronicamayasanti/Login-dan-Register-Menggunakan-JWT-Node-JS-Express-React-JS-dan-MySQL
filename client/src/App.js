@@ -3,12 +3,14 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="main">
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
