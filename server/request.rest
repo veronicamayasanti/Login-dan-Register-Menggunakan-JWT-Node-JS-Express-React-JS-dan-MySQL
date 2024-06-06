@@ -1,15 +1,14 @@
 GET http://localhost:8080/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJqaG9uIiwiZW1haWwiOiJqaG9uZUBtYWlsLmNvbSIsImlhdCI6MTcxNzQ5NzA4MywiZXhwIjoxNzE3NDk3MDk4fQ.32FRC1TOCK9MI5Mnnqbb3PpFLvm1wy19USFXh59NWcY
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE0LCJuYW1lIjoiYWRtaW45IiwiZW1haWwiOiJhZG1pbjlAbWFpbC5jb20iLCJpYXQiOjE3MTc2NzE3NjAsImV4cCI6MTcxNzY3MTc3NX0.1jJaD7-3Oku7AG8YFnS3pn-qMnmXuOzADxAr8Tvvj54
 ###
 POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-    "name" : "admin6",
-    "email": "admin6@mail.com",
-    "password": "abcs",
-    "confPassword": "abcs"
+    "name" : "admin9",
+    "email": "admin9@mail.com",
+    "password": "abcd",
+    "confPassword": "abcd"
 }
 
 
@@ -18,8 +17,8 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-    "email": "admin6@mail.com",
-    "password": "abcs"
+    "email": "admin9@mail.com",
+    "password": "1abcd"
 
 }
 

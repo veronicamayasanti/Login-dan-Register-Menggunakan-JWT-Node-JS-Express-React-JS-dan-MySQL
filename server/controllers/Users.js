@@ -44,8 +44,6 @@ export const Register = async (req, res) => {
 };
 
 
-
-
 export const Login = async (req, res) => {
     try {
         const user = await Users.findAll({ // mencari user berdasarkan email
@@ -54,9 +52,11 @@ export const Login = async (req, res) => {
             }
         });
 
-        if (user.length < 1 || user == undefined) {
-            return res.status(400).json({ msg: "email not found" })
+        // jika user tidak ditemukan, kirim pesan error
+        if(user.length === 0){
+            return res.status(404).json({msg: "email tidak ditemukan"})
         }
+
 
         //jika email sudah cocok antara input dan database
         // selanjutnya mencocokan password
@@ -64,12 +64,19 @@ export const Login = async (req, res) => {
         user[0].password); // ini password yang ada di database, [0] index ke 0 karena single data
 
         // jika password tidak cocok 
-        if (!match) return res.status(400).json({ msg: "wrong password" });
+        if (!match) {
+            return res.status(400).json({ msg: "wrong password" });
+        }
+            
 
         // jika password cocok maka mengambil data dari database
         const userId = user[0].id;
         const name = user[0].name;
         const email = user[0].email;
+
+        console.log("ACCESS_TOKEN_SECRET:", process.env.ACCESS_TOKEN_SECRET);
+        console.log("REFRESH_TOKEN_SECRET:", process.env.REFRESH_TOKEN_SECRET);
+
         const accesToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: '15s'
         });
@@ -91,8 +98,8 @@ export const Login = async (req, res) => {
         });
         res.json({  accesToken })
     } catch (error) {
-        console.error(error);
-        res.status(404).json({ msg: "Email tidak ditemukan" });
+        console.log("error during login process:" ,error);
+        res.status(500).json({ msg: "terjadi kesalahan server" , error: error.message});
     }
 }
 
