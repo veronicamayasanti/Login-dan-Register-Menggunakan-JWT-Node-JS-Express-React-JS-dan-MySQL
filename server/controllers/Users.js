@@ -14,15 +14,11 @@ export const getUsers = async (req, res) => {
 }
 
 
-
 export const Register = async (req, res) => {
     const { name, email, password, confPassword } = req.body;
     if (password !== confPassword) {
         return res.status(400).json({ msg: "Password dan Confirmasi Password tidak cocok" });
     }
-
-    
-   
 
     try {
         // Check if email exists
@@ -52,7 +48,7 @@ export const Register = async (req, res) => {
 
 export const Login = async (req, res) => {
     try {
-        const user = await Users.findAll({
+        const user = await Users.findAll({ // mencari user berdasarkan email
             where: {
                 email: req.body.email
             }
@@ -62,8 +58,15 @@ export const Login = async (req, res) => {
             return res.status(400).json({ msg: "email not found" })
         }
 
-        const match = await bcrypt.compare(req.body.password, user[0].password);
+        //jika email sudah cocok antara input dan database
+        // selanjutnya mencocokan password
+        const match = await bcrypt.compare(req.body.password, // ini password yang di kirimkan oleh client
+        user[0].password); // ini password yang ada di database, [0] index ke 0 karena single data
+
+        // jika password tidak cocok 
         if (!match) return res.status(400).json({ msg: "wrong password" });
+
+        // jika password cocok maka mengambil data dari database
         const userId = user[0].id;
         const name = user[0].name;
         const email = user[0].email;
@@ -80,14 +83,16 @@ export const Login = async (req, res) => {
                 id: userId
             }
         });
+
+        // http cookie yang dikirim ke client
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
         });
-        res.json({ accesToken })
+        res.json({  accesToken })
     } catch (error) {
         console.error(error);
-        res.status(400).json({ msg: "System Error" });
+        res.status(404).json({ msg: "Email tidak ditemukan" });
     }
 }
 

@@ -6,8 +6,8 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-    "name" : "nana",
-    "email": "angle@mail.com",
+    "name" : "admin6",
+    "email": "admin6@mail.com",
     "password": "abcs",
     "confPassword": "abcs"
 }
@@ -18,8 +18,8 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-    "email": "jhone@mail.com",
-    "password": "123"
+    "email": "admin6@mail.com",
+    "password": "abcs"
 
 }
 
