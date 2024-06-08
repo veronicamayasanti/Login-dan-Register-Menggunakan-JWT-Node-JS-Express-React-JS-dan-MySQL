@@ -25,13 +25,15 @@ useEffect(() => {
     console.log('Token response:', response.data);
     const accessToken = response.data.accessToken;
 
-    if (typeof accessToken !== 'string' || accessToken.trim() === '') {
+    if (!accessToken ||typeof accessToken !== 'string' || accessToken.trim() === '') {
       throw new Error('Invalid token received');
     }
 
 
     setToken(accessToken);
     const decoded = jwtDecode(accessToken);
+    console.log('decodes token: ',decoded);
+    
     setName(decoded.name);
     setExpire(decoded.exp);
   } catch (error) {
@@ -52,13 +54,15 @@ axiosJWT.interceptors.request.use(async (config) => {
       const response = await axios.get('http://localhost:8080/token');
       const accessToken = response.data.accessToken;
 
-      if (typeof accessToken !== 'string' || accessToken.trim() === '') {
+      if (!accessToken ||typeof accessToken !== 'string' || accessToken.trim() === '') {
         throw new Error('Invalid token received');
       }
 
       config.headers.Authorization = `Bearer ${accessToken}`;
       setToken(accessToken);
       const decoded = jwtDecode(accessToken);
+      console.log('decoded token in interceptor: ', decoded);
+
       setName(decoded.name);
       setExpire(decoded.exp);
     } catch (error) {

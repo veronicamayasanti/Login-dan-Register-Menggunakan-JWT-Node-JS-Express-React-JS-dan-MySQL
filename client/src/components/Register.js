@@ -16,12 +16,13 @@ const Register = () => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:8080/users', {
+                //data yang ingin kita submit
                 name: name,
                 email: email,
                 password: password,
                 confPassword: confPassword
             })
-            navigate('/login')
+            navigate('/')
         } catch (error) {
             if(error.response){
                 setMsg(error.response.data.msg)
@@ -98,7 +99,7 @@ const Register = () => {
                     </div>
                     <div className="signup-image">
                         <figure><img src="images/signup-image.jpg" alt="sign up image" /></figure>
-                        <a href="/login" className="signup-image-link">I am already member</a>
+                        <a href="/" className="signup-image-link">I am already member</a>
                     </div>
                 </div>
             </div>

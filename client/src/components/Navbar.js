@@ -8,7 +8,7 @@ function Navbar() {
 const Logout = async () => {
     try {
         await axios.delete('http://localhost:8080/logout');
-        navigate('/login')
+        navigate('/')
     } catch (error) {
         console.log(error);
     }
@@ -29,12 +29,9 @@ const Logout = async () => {
                       <div className="navbar-collapse collapse" id="mobile_menu">
                     
                          <ul className="nav navbar-nav navbar-right">
-                              <li className="active"><a href="/home">Home</a></li>
+                              <li className="active"><a href="/">Home</a></li>
 
-                              <li><a href="/contact">Contact Us</a></li>
-                              <li><a href="/profile"><span className="glyphicon glyphicon-user"></span> Profile</a></li>
-                              <li><a href="/login">Login</a></li>
-                              <li><a href="/register">Sign Up</a></li>
+                           
                               <li><a  onClick={Logout}>Logout</a></li>
                               
                               

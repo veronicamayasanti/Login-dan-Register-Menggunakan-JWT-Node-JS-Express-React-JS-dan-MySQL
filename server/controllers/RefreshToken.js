@@ -5,7 +5,9 @@ export const refreshToken = async(req, res) => {
     try {
         const refreshToken = req.cookies.refreshToken;
         console.log("ini refresh token", refreshToken);
+
         if(!refreshToken) return res.sendStatus(401).json({msg: "tidak terdapat resfres token"});
+        
         const user = await Users.findAll({
             where: {
                 refresh_token: refreshToken
@@ -13,6 +15,7 @@ export const refreshToken = async(req, res) => {
         });
         if (!user[0]) return res.sendStatus(403).json({ msg: "token tidak cocok" });
 
+        
         //jika token cocok
         jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
             if (err) return res.sendStatus(403).json({ msg: "gagal mencocokan token" });
