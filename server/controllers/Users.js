@@ -10,6 +10,7 @@ export const getUsers = async (req, res) => {
         res.json(users);
     } catch (error) {
         console.log(error);
+        res.status(500).json({ msg: "Error fetching users" });
     }
 }
 
@@ -78,7 +79,7 @@ export const Login = async (req, res) => {
         console.log("REFRESH_TOKEN_SECRET:", process.env.REFRESH_TOKEN_SECRET);
 
         const accesToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: '15s'
+            expiresIn: '15m'
         });
         const refreshToken = jwt.sign({ userId, name, email }, process.env.REFRESH_TOKEN_SECRET, {
             expiresIn: '1d'
@@ -122,4 +123,23 @@ export const Logout = async (req, res) => {
     res.clearCookie('refreshToken');
     return res.sendStatus(200);
 
+}
+
+
+export const getProfile = async (req, res) => {
+    try {
+        const accesToken = req.headers['authorization'].split(' ')[1];
+        const decoded = jwt.verify(accesToken, process.env.ACCESS_TOKEN_SECRET);
+        const user = await Users.findOne({
+            where: {
+                id:  decoded.userId
+            },
+            attributes: ['id', 'name', 'email']
+        });
+        if(!user) return res.status(404).json({msg: "user not found"});
+        res.json(user);
+    } catch (error) {
+        console.log('error fetching profile: ', error);
+        res.status(500).json({msg: "error fetching profile"});
+    }
 }
