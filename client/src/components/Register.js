@@ -22,7 +22,7 @@ const Register = () => {
                 password: password,
                 confPassword: confPassword
             })
-            navigate('/')
+            navigate('/login')
         } catch (error) {
             if(error.response){
                 setMsg(error.response.data.msg)
@@ -99,7 +99,7 @@ const Register = () => {
                     </div>
                     <div className="signup-image">
                         <figure><img src="images/signup-image.jpg" alt="sign up image" /></figure>
-                        <a href="/" className="signup-image-link">I am already member</a>
+                        <a href="/login" className="signup-image-link">I am already member</a>
                     </div>
                 </div>
             </div>

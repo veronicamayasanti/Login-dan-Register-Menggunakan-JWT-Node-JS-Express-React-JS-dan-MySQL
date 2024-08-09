@@ -1,60 +1,57 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 
 const Dashboard = () => {
-  const [users, setUsers] = useState([]);
-  const [profile, setProfile] = useState({});
-  const [error, setError] = useState('');
+  const [name, setName] = useState([]);
+  const [token, setToken] = useState('');
+  const [expire, setExpire] = useState('');
 
-const fetchProfile = async () => {
-  try {
-    const token = localStorage.getItem('accessToken');
-    const response = await axios.get('http://localhost:8080/profile', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    setProfile(response.data);
-  } catch (error) {
-    console.log('error fetching profile:', error);
-    setError('failed to fetch profile')
-  }
-};
+  const navigate = useNavigate();
 
-const fetchUsers = async () => {
-  try {
-    const token = localStorage.getItem('accessToken');
-    const response = await axios.get('http://localhost:8080/users', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    setUsers(response.data);
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    setError('Failed to fetch users');
-  }
-};
 
   useEffect(() => {
-    fetchProfile();
-    fetchUsers();
+    refreshToken();
   }, []);
 
+  
+  const refreshToken = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/token');
+      setToken(response.data.accessToken);
+      setName(response.data.name);
+      console.log(response.data);
 
-   return (
+      const decoded = jwtDecode(response.data.accessToken);
+      console.log(decoded);
+      setExpire(decoded.exp);
+    } catch (error) {
+      if (error.response) {
+        navigate('/login');
+      } 
+    }
+  };
+
+
+  const getUsers = async () => {
+    const response = await axios.get('http://localhost:8080/users', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.data);
+  }
+
+  return (
     <div>
-       <h1>Welcome back, {profile.name}</h1>
-       {error && <p>{error}</p>}
-       <h2>All Users</h2>
-       <ul>
-         {users.map(user => (
-           <li key={user.id}>{user.name} - {user.email}</li>
-         ))}
-       </ul>
+      <h1>Welcome {name}</h1>
+      <button onClick={getUsers}>Get Users</button>
     </div>
   )
 }
+
+
 
 export default Dashboard

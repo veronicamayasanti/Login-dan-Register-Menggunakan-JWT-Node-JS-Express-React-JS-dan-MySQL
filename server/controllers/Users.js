@@ -63,9 +63,6 @@ export const Login = async (req, res) => {
         const name = user[0].name;
         const email = user[0].email;
 
-        console.log("ACCESS_TOKEN_SECRET:", process.env.ACCESS_TOKEN_SECRET);
-        console.log("REFRESH_TOKEN_SECRET:", process.env.REFRESH_TOKEN_SECRET);
-
         const accesToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: '20s'
         });
@@ -85,7 +82,8 @@ export const Login = async (req, res) => {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
         });
-        res.json({  accesToken })
+        res.json({  accesToken, userId, name, email });
+        res.send
     } catch (error) {
      res.status(404).json({msg: "email tidak ditemukan"})
     }
@@ -93,7 +91,6 @@ export const Login = async (req, res) => {
 
 export const Logout = async (req, res) => {
     const refreshToken = req.cookies.refreshToken;
-    console.log(refreshToken);
     if (!refreshToken) return res.sendStatus(204);
     const user = await Users.findAll({
         where: {
