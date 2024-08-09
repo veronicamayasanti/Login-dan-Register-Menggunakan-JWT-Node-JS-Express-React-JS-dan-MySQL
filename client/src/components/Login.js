@@ -48,7 +48,7 @@ return (
 
                             <div className="form-group">
                                 <label htmlFor="your_pass"><i className="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type="password" name="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />              
                             </div>
                             
                             <div className="form-group form-button">
